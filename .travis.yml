@@ -1,0 +1,12 @@
+sudo: required
+
+language: ruby
+
+services:
+  - docker
+
+before_install:
+  - docker build -t michaloo/crystal .
+
+script:
+  - bash -c '[[ `docker run -it --rm michaloo/crystal version` == *"$TRAVIS_TAG"* ]]'
