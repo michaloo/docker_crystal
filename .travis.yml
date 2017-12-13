@@ -2,8 +2,6 @@ sudo: required
 
 language: ruby
 
-if: tag IS present
-
 services:
   - docker
 
@@ -11,4 +9,4 @@ before_install:
   - docker build -t michaloo/crystal .
 
 script:
-  - bash -c '[[ `docker run -it --rm michaloo/crystal version` == *"$TRAVIS_TAG"* ]]'
+  - VERSION=`docker run --entrypoint /bin/sh michaloo/crystal -c 'echo $CRYSTAL_VERSION'` bash -c '[[ `docker run -it --rm michaloo/crystal version` == *"$VERSION"* ]]'

@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-
-docker build --build-arg crystal_version=$DOCKER_TAG -t $IMAGE_NAME .
